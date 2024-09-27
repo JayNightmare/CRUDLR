@@ -4,7 +4,7 @@ import { View, StatusBar, StyleSheet } from 'react-native';
 const Screen = ({ children }) => {
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle="dark-content" />
             {children}
         </View>
     );

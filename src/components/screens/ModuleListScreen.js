@@ -1,42 +1,20 @@
-import React from 'react';
-import { Text, StatusBar, View, StyleSheet, Pressable } from 'react-native';
-import Screen from '../layout/Screen';
+import React from "react";
+import { StatusBar } from "react-native";
 
-import initialModules from '../../data/modules.js';
+import Screen from "../layout/Screen";
+import initialModules from "../../data/modules.js";
+import ModuleList from "../entity/modules/ModuleList.js";
 
 const ModuleListScreen = () => {
     const modules = initialModules;
+    const handleSelect = (module) => () => alert(`${module.ModuleCode}:  ${module.ModuleName}`);
 
-    return (
+    return ( 
         <Screen>
             <StatusBar barStyle="dark-content" />
-            <Pressable style={styles.container}>            
-                { modules.map((module) => {
-                return (
-                    <View key={module.ModuleCode} style={styles.item}> 
-                        <Text>{module.ModuleCode} | {module.ModuleName}</Text>
-                    </View>
-                )
-                })}
-            </Pressable>
- 
+            <ModuleList modules={modules} onSelect={handleSelect} />
         </Screen>
-
-    )
+    );
 };
-
-const styles = StyleSheet.create({    
-    container: {
-        flex: 1,
-        padding: 20,
-        backgroundColor: '#f2f2f2',
-    },
-    item: {
-        backgroundColor: '#fff',
-        padding: 10,
-        marginBottom: 10,
-        borderRadius: 5,
-    }
-});
 
 export default ModuleListScreen;

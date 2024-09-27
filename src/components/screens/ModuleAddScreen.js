@@ -5,7 +5,7 @@ import Screen from '../layout/Screen';
 const ModuleAddScreen = () => {
     return (
         <Screen>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle="dark-content" />
             <Text>Add</Text>
         </Screen>
     )

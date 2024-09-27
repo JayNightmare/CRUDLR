@@ -12,10 +12,10 @@ export const App = () => {
     return (
         <NavigationContainer>
           <Stack.Navigator initialRouteName='ModuleListScreen'>
-            <Stack.Screen name='ModuleListScreen' component={ModuleListScreen} options={{ title: 'Module List' }} />
-            <Stack.Screen name='ModuleAddScreen' component={ModuleAddScreen} options={{ title: 'Add Module' }} />
-            <Stack.Screen name='ModuleModifyScreen' component={ModuleModifyScreen} options={{ title: 'Modify Module' }} />
-            <Stack.Screen name='ModuleViewScreen' component={ModuleViewScreen} options={{ title: 'View Module' }} />
+            <Stack.Screen name='ModuleListScreen' component={ ModuleListScreen } options={{ title: 'Module List' }} />
+            <Stack.Screen name='ModuleAddScreen' component={ ModuleAddScreen } options={{ title: 'Add Module' }} />
+            <Stack.Screen name='ModuleModifyScreen' component={ ModuleModifyScreen } options={{ title: 'Modify Module' }} />
+            <Stack.Screen name='ModuleViewScreen' component={ ModuleViewScreen } options={{ title: 'View Module' }} />
           </Stack.Navigator>
         </NavigationContainer>
     );

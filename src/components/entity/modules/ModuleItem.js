@@ -1,30 +1,66 @@
-import { Pressable, StyleSheet, View, Text } from "react-native";
+import { Pressable, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
-
-const ModuleItem = ({ module, onSelect }) => {
+const ModuleItem = ({ module, onSelect, onRemove }) => {
     return (
-        <Pressable key={module.ModuleCode} onPress={() => onSelect(module)}>
-            <View style={styles.item}>
-                <Text style={styles.moduleNameText}>
-                    <Text style={{ fontWeight: "bold" }}>
-                        {module.ModuleCode}
-                    </Text>{" "}
-                    | {module.ModuleName}
-                </Text>
+        <View style={styles.cardContainer}>
+            {/* Main row container */}
+            <View style={styles.row}>
+                {/* Pressable for selecting the module */}
+                <Pressable onPress={() => onSelect(module)} style={styles.textContainer}>
+                    <Text style={styles.moduleNameText}>
+                        <Text style={{ fontWeight: "bold" }}>{module.ModuleCode}</Text> | {module.ModuleName}
+                    </Text>
+                </Pressable>
+
+                {/* Pressable for the remove button */}
+                <TouchableOpacity onPress={() => onRemove(module)} style={styles.removeButton}>
+                    <Ionicons name="trash" size={24} color="red" />
+                </TouchableOpacity>
             </View>
-        </Pressable>
-    );
+        </View>
+    ); 
 };
 
 const styles = StyleSheet.create({
-    item: {
-        backgroundColor: "#fff",
-        padding: 10,
-        marginBottom: 10,
-        borderRadius: 5,
+    cardContainer: {
+        marginVertical: 5,
+        marginHorizontal: 10,
+        backgroundColor: "#f8f8f8", 
+        borderRadius: 8,
+        elevation: 2, 
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        paddingHorizontal: 10,
+        paddingVertical: 12,
     },
-    moduleNameText: {   
-        fontSize: 22, // adjust the font size here
+
+    row: {
+        flexDirection: "row", // Align items horizontally
+        justifyContent: "space-between", // Space between the text and delete button
+        alignItems: "center", // Center items vertically
+    },
+
+    overView: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: 10, 
+    },
+
+    textContainer: {
+        flex: 1, 
+    },
+
+    moduleNameText: {
+        fontSize: 18,
+        color: "#333", 
+    },
+
+    removeButton: {
+        padding: 5, 
     },
 });
 

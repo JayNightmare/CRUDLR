@@ -13,7 +13,7 @@ const Screen = ({ children }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#d7c8f3',
         padding: 16,
     },
 });

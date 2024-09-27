@@ -19,6 +19,6 @@ const ModuleListScreen = () => {
             <ModuleList modules={modules} onSelect={handleSelect} onRemove={handleDelete}/>
         </Screen>
     );
-}; 
+};  
 
-export default ModuleListScreen;
+export default ModuleListScreen; 

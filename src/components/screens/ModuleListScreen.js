@@ -18,7 +18,6 @@ const ModuleListScreen = () => {
 
     const handleDelete = (module) => { 
         setModules(modules.filter((item) => item.ModuleID !== module.ModuleID)); 
-        // If user is on view module, go back to list screen
         navigation.navigate('ModuleListScreen');
     }; 
 

@@ -1,5 +1,6 @@
 import { StyleSheet, Text, ScrollView, Image } from "react-native";
-import { Button } from "../../UI/Button.js";
+import { Button, ButtonTray } from "../../UI/Button.js";
+import Icons from "../../UI/Icons.js";
 
 const ModuleView = ({ module, placeHolderText, onModify, onRemove }) => {
     return (
@@ -10,9 +11,10 @@ const ModuleView = ({ module, placeHolderText, onModify, onRemove }) => {
             <Text style={styles.detail}>Level: {module.ModuleLevel}</Text>
             <Text style={styles.detail}>Module Leader: {module.ModuleLeaderName}</Text>
 
-            <Button label='Modify'/>
-
-            <Button label='Delete'/>
+            <ButtonTray>
+                <Button onClick={() => onModify(module)} icon={<Icons.Edit />} label='Modify' />
+                <Button onClick={() => onRemove(module)} icon={<Icons.Delete />} label='Delete' styleLabel={{color: 'red'}} styleButton={{borderColor: 'red'}} />
+            </ButtonTray>
 
             <Text style={styles.descrip} >{placeHolderText}</Text>
         </ScrollView>

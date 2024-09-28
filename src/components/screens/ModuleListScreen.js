@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, LogBox } from "react-native";
+import { StatusBar, LogBox, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Screen from "../layout/Screen";
@@ -12,17 +12,8 @@ import Icons from "../UI/Icons.js";
 const ModuleListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state'])
 
-
     const navigation = useNavigation();
     const [modules, setModules] = React.useState(initialModules);
-
-    // const handleSelect = (module) => { 
-    //     navigation.navigate('ModuleViewScreen', { 
-    //         module, 
-    //         onRemove: handleDelete,
-    //         onModify: handleModify 
-    //     });
-    // };
     
     const handleDelete = (module) => { 
         setModules(modules.filter((item) => item.ModuleID !== module.ModuleID)); 
@@ -33,17 +24,13 @@ const ModuleListScreen = () => {
         navigation.navigate('ModuleListScreen');
     };
 
-    const handleAdd = (module) => {
-        setModules([...modules, module]);
-    };
+    const handleAdd = (module) => setModules([...modules, module]);
 
     const handleModify = (updatedModule) => { 
         setModules(
             modules.map((module) => (module.ModuleID === updatedModule.ModuleID) ?  updatedModule : module)
         );
     };
-
-    
 
     const onAdd = (module) => {
         handleAdd(module);
@@ -63,21 +50,31 @@ const ModuleListScreen = () => {
         });
     };  
 
-    const gotoAddScreen = () => {
-        navigation.navigate('ModuleAddScreen', {
-            onSave: onAdd,
-        });
-    };
+    const gotoAddScreen = () => { navigation.navigate('ModuleAddScreen', { onAdd }); };    
     
     return ( 
         <Screen>
             <StatusBar barStyle="light-content" />
             <ButtonTray>
-                <Button icon={<Icons.Add />} label="Add" onPress={gotoAddScreen} />
+                <Button styleButton={{
+                            borderBottomLeftRadius: 0, 
+                            borderBottomRightRadius: 0, 
+                            borderBottomWidth: 1, borderWidth: 0
+                        }} 
+                        icon={<Icons.Add size={20}/>} 
+                        label="Add" 
+                        onPress={gotoAddScreen} />
             </ButtonTray>
             <ModuleList modules={modules} onSelect={gotoViewScreen} onDelete={handleDelete} />
         </Screen>
     );
 };  
+
+const styles = StyleSheet.create({
+    buttonTray: {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0
+    },
+}); 
 
 export default ModuleListScreen; 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Icons from '../../UI/Icons';
-import { Button, ButtonTray } from '../../UI/Button';
+import Form from '../../UI/Form';
 
 const defaultModule = {
     ModuleID: null,
@@ -13,89 +13,40 @@ const defaultModule = {
     ModuleImage: null
 }
 
-const ModuleForm = ({ handleCancel, navigation, onModify, onSubmit, onCancel }) => {
-    const [module, setModule] = useState(defaultModule);
-
+const ModuleForm = ({ onSubmit, onCancel }) => {
     defaultModule.ModuleID = Math.floor(100000 + Math.random() * 900000);
     defaultModule.ModuleImage = 'https://via.placeholder.com/150';
 
-    const handleChange = (field, value) => { 
-        setModule({ ...module, [field]: value });
-    }
+    const levels = [
+        { value: 3, label: '3 (Foundation)' },
+        { value: 4, label: '4 (First Year)' },
+        { value: 5, label: '5 (Second Year)' },
+        { value: 6, label: '6 (Third Year)' },
+        { value: 7, label: '7 (Masters)' },
+    ];
 
-    const handleSubmit = () => {
-        onSubmit(module);
-    }
+    const [module, setModule] = useState(defaultModule);
 
-    const submitLabel = module.ModuleID? 'Update Module' : 'Add Module';
-    const submitIcon = module.ModuleID? Icons.Save : Icons.Add;
+    const handleChange = (field, value) => setModule({ ...module, [field]: value });
+    const handleAdd = () => onSubmit(module);
+
+    const submitLabel = module.ModuleID ? 'Update Module' : 'Add Module';
+    const submitIcon = module.ModuleID ? <Icons.Edit size={15}/> : <Icons.Add size={15}/>;
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Edit Module</Text>
-            
-            {/* Form Input for Module Code */}
-            <Text style={styles.label}>Module Code:</Text>
-            <TextInput
-                style={styles.input}
-                value={module.ModuleCode}
-                onChangeText={(value) => handleChange('ModuleCode', value)}
-            />
-            
-            {/* Form Input for Module Name */}
-            <Text style={styles.label}>Module Name:</Text>
-            <TextInput
-                style={styles.input}
-                value={module.ModuleName}
-                onChangeText={(value) => handleChange('ModuleName', value)}
-            />
-            
-            {/* Form Input for Module Level */}
-            <Text style={styles.label}>Module Level:</Text>
-            <TextInput
-                style={styles.input}
-                value={module.ModuleLevel}
-                onChangeText={(value) => handleChange('ModuleLevel', value)}
-                keyboardType="numeric"
-            />
-
-            {/* Buttons for Saving and Canceling */}
-            <ButtonTray style={styles.buttonContainer}>
-                <Button label={submitLabel} icon={submitIcon} title="Save Changes" onPress={handleSubmit} color="black" />
-                <Button label="Cancel" title="Cancel" onPress={onCancel} color="gray" />
-            </ButtonTray>
-        </View>
+        <Form onSubmit={handleAdd} onCancel={onCancel} submitLabel={submitLabel} submitIcon={submitIcon}>
+            {/* <Text style={styles.title}>Edit Module</Text> */}
+            <Form.InputText label="Module Code" value={module.ModuleCode} onChange={(value) => handleChange('ModuleCode', value)} />
+            <Form.InputText label="Module Name" value={module.ModuleName} onChange={(value) => handleChange('ModuleName', value)} />
+            <Form.InputSelect label="Module Level" prompt="Select Module Level" options={levels} value={module.ModuleLevel} onChange={(value) => handleChange('ModuleLevel', value)} />
+            <Form.InputText label="Module Leader Name" value={module.ModuleLeaderName} onChange={(value) => handleChange('ModuleLeaderName', value)} />
+            <Form.InputText label="Module Image" value={module.ModuleImage} onChange={(value) => handleChange('ModuleImage', value)} />
+        </Form>
     )
 }
 
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 20,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        textAlign: 'center',
-        color: 'white',
-    },
-    label: {
-        fontSize: 18,
-        marginBottom: 10,
-        color: 'white',
-    },
-    input: {
-        backgroundColor: 'white',
-        padding: 10,
-        borderRadius: 8,
-        marginBottom: 20,
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 20,
-    },
 });
 
 export default ModuleForm;

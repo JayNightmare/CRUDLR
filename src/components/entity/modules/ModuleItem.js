@@ -1,5 +1,4 @@
-import { Pressable, StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 
 const ModuleItem = ({ module, onSelect, onRemove }) => {
     return (
@@ -7,15 +6,10 @@ const ModuleItem = ({ module, onSelect, onRemove }) => {
             {/* Main row container */}
             <View style={styles.row}>
                 {/* Pressable for selecting the module */}
-                <Pressable onPress={() => onSelect(module)} style={styles.textContainer}>
+                <TouchableOpacity onPress={() => onSelect(module)} style={styles.textContainer}>
                     <Text style={styles.moduleNameText}>
                         <Text style={{ fontWeight: "bold" }}>{module.ModuleCode}</Text> | {module.ModuleName}
                     </Text>
-                </Pressable>
-
-                {/* Pressable for the remove button */}
-                <TouchableOpacity onPress={() => onRemove(module)} style={styles.removeButton}>
-                    <Ionicons name="trash" size={24} color="red" />
                 </TouchableOpacity>
             </View>
         </View>
@@ -35,6 +29,9 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
         paddingHorizontal: 10,
         paddingVertical: 12,
+        borderColor: "#cccc", // Add a bottom border
+        borderWidth: 1,
+        marginBottom: 10, // Add a margin below the card
     },
 
     row: {

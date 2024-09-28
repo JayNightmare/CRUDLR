@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, LogBox, StyleSheet } from "react-native";
+import { StatusBar, LogBox } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Screen from "../layout/Screen";
@@ -26,11 +26,7 @@ const ModuleListScreen = () => {
 
     const handleAdd = (module) => setModules([...modules, module]);
 
-    const handleModify = (updatedModule) => { 
-        setModules(
-            modules.map((module) => (module.ModuleID === updatedModule.ModuleID) ?  updatedModule : module)
-        );
-    };
+    const handleModify = (updatedModule) => setModules( modules.map((module) => (module.ModuleID === updatedModule.ModuleID) ?  updatedModule : module));
 
     const onAdd = (module) => {
         handleAdd(module);
@@ -42,16 +38,10 @@ const ModuleListScreen = () => {
         navigation.navigate('ModuleListScreen');
     };
 
-    const gotoViewScreen = (module) => {
-        navigation.navigate('ModuleViewScreen', {
-            module,
-            onDelete: onDelete,
-            onModify: onModify
-        });
-    };  
+    const gotoViewScreen = (module) => navigation.navigate('ModuleViewScreen', { module, onDelete, onModify });
 
-    const gotoAddScreen = () => { navigation.navigate('ModuleAddScreen', { onAdd }); };    
-    
+    const gotoAddScreen = () => { navigation.navigate('ModuleAddScreen', { onAdd }); };  
+
     return ( 
         <Screen>
             <StatusBar barStyle="light-content" />
@@ -68,13 +58,6 @@ const ModuleListScreen = () => {
             <ModuleList modules={modules} onSelect={gotoViewScreen} onDelete={handleDelete} />
         </Screen>
     );
-};  
-
-const styles = StyleSheet.create({
-    buttonTray: {
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0
-    },
-}); 
+};
 
 export default ModuleListScreen; 

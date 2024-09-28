@@ -26,7 +26,7 @@ const ModuleView = ({ module, placeHolderText, onModify, onDelete }) => {
             <Text style={styles.detail}>Module Leader: {module.ModuleLeaderName}</Text>
 
             <ButtonTray>
-                <Button onPress={() => onModify(module)} icon={<Icons.Edit size={20}/>} label='Modify' />
+                <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />
                 <Button onPress={requestDelete} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
             </ButtonTray>
 
@@ -108,15 +108,3 @@ const styles = StyleSheet.create({
 });
 
 export default ModuleView;
-
-
-// <View style={styles.pressableView}>
-//     <Pressable onPress={() => onModify(module)} style={styles.modifyButton}>
-//         <Text style={styles.modifyButtonText}>Edit Module</Text>
-//     </Pressable>
-
-//     {/* Delete Button */}
-//     <Pressable onPress={() => onRemove(module)} style={styles.deleteButton}>
-//         <Text style={styles.deleteButtonText}>Delete Module</Text>
-//     </Pressable>
-// </View>;

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
 import Icons from '../../UI/Icons';
 import Form from '../../UI/Form';
 
@@ -13,7 +12,7 @@ const defaultModule = {
     ModuleImage: null
 }
 
-const ModuleForm = ({ onSubmit, onCancel }) => {
+const ModuleForm = ({ ogModule, onSubmit, onCancel }) => {
     defaultModule.ModuleID = Math.floor(100000 + Math.random() * 900000);
     defaultModule.ModuleImage = 'https://via.placeholder.com/150';
 
@@ -25,16 +24,22 @@ const ModuleForm = ({ onSubmit, onCancel }) => {
         { value: 7, label: '7 (Masters)' },
     ];
 
-    const [module, setModule] = useState(defaultModule);
+    const [module, setModule] = useState(ogModule || defaultModule);
 
     const handleChange = (field, value) => setModule({ ...module, [field]: value });
-    const handleAdd = () => onSubmit(module);
+    const handleSubmit = () => {
+        if (typeof onSubmit === 'function') {
+            onSubmit(module); // Make sure `onSubmit` is called here
+        } else {
+            console.error('onSubmit is not a function:', onSubmit);
+        }
+    };
 
-    const submitLabel = module.ModuleID ? 'Update Module' : 'Add Module';
-    const submitIcon = module.ModuleID ? <Icons.Edit size={15}/> : <Icons.Add size={15}/>;
+    const submitLabel = ogModule ? 'Update Module' : 'Add Module';
+    const submitIcon = ogModule ? <Icons.Edit size={15}/> : <Icons.Add size={15}/>;
 
     return (
-        <Form onSubmit={handleAdd} onCancel={onCancel} submitLabel={submitLabel} submitIcon={submitIcon}>
+        <Form onSubmit={handleSubmit} onCancel={onCancel} submitLabel={submitLabel} submitIcon={submitIcon}>
             {/* <Text style={styles.title}>Edit Module</Text> */}
             <Form.InputText label="Module Code" value={module.ModuleCode} onChange={(value) => handleChange('ModuleCode', value)} />
             <Form.InputText label="Module Name" value={module.ModuleName} onChange={(value) => handleChange('ModuleName', value)} />
@@ -44,9 +49,5 @@ const ModuleForm = ({ onSubmit, onCancel }) => {
         </Form>
     )
 }
-
-
-const styles = StyleSheet.create({
-});
 
 export default ModuleForm;

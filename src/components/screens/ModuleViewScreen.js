@@ -18,11 +18,7 @@ Nostra eu magna sed massa class tortor a. Primis adipiscing interdum rutrum aliq
 Amet sit ridiculus sociosqu nibh, mollis et porttitor. Cursus quam eu mollis arcu vel. Netus tempus sagittis euismod vestibulum nunc sociosqu. Id netus id leo; fringilla quam rutrum. Vehicula eros sem; dapibus ridiculus dis curae fusce luctus. Faucibus lacus feugiat consectetur molestie adipiscing cursus libero commodo nostra. Ut rutrum inceptos est facilisis metus penatibus habitant fames. Eget sit adipiscing molestie turpis nam fames est.
     `;
 
-    const gotoModifyScreen = () => {
-        navigation.navigate('ModuleModifyScreen', {
-            onSave: onModify
-        });
-    };
+    const gotoModifyScreen = () => navigation.navigate('ModuleModifyScreen', { module, onModify });
 
     return (
         <Screen>

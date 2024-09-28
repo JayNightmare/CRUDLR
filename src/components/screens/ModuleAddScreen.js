@@ -1,12 +1,17 @@
 import React from 'react';
-import { Text, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import Screen from '../layout/Screen';
+import ModuleForm from '../entity/modules/ModuleForm';
 
-const ModuleAddScreen = () => {
+const ModuleAddScreen = ({ navigation, route }) => {
+    const { onAdd } = route.params;
+
+    const handleCancel =  navigation.goBack;
+
     return (
         <Screen>
-            <StatusBar barStyle="dark-content" />
-            <Text>Add</Text>
+            <StatusBar barStyle="light-content" />
+            <ModuleForm onSubmit={onAdd} onCancel={handleCancel} />
         </Screen>
     )
 };

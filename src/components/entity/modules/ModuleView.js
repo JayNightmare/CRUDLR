@@ -1,8 +1,22 @@
-import { StyleSheet, Text, ScrollView, Image } from "react-native";
+import { StyleSheet, Text, ScrollView, Image, Alert } from "react-native";
 import { Button, ButtonTray } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 
-const ModuleView = ({ module, placeHolderText, onModify, onRemove }) => {
+const ModuleView = ({ module, placeHolderText, onModify, onDelete }) => {
+    const handleDelete = () => onDelete(module);
+
+    const requestDelete = () => {
+        Alert.alert(
+            'Delete Module',
+            `Are you sure you want to delete this\n${module.ModuleCode}: ${module.ModuleName}?`,
+            [
+                { text: 'Cancel', style: 'cancel' },
+                { text: 'Delete', onPress: () => handleDelete(), color: 'red' },
+            ],
+            { cancelable: true }
+        );
+    };
+
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>{module.ModuleCode}</Text>
@@ -13,7 +27,7 @@ const ModuleView = ({ module, placeHolderText, onModify, onRemove }) => {
 
             <ButtonTray>
                 <Button onPress={() => onModify(module)} icon={<Icons.Edit />} label='Modify' />
-                <Button onPress={() => onRemove(module)} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
+                <Button onPress={requestDelete} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
             </ButtonTray>
 
             <Text style={styles.descrip} >{placeHolderText}</Text>

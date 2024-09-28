@@ -7,7 +7,7 @@ const ModuleList = ({modules, onSelect, onRemove}) => {
         <ScrollView style={styles.container}>
             { modules.map((module) => {
                 return <ModuleItem key={module.ModuleCode} module={module} onSelect={onSelect} onRemove={onRemove}/>
-            }) }
+            })}
         </ScrollView>
     );
 };

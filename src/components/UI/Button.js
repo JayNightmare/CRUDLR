@@ -1,15 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
-export const Button = ({ icon, label, onClick, styleLabel, styleButton }) => {
-
-    return (
-        <Pressable onPress={onClick} style={[styles.button, styleButton]}>
-            { icon || null }
-            <Text style={[styles.label, styleLabel]}>{label}</Text>
-        </Pressable>
-    );
-}
-
 export const ButtonTray = ({ children }) => {
     return (
         <View style={styles.buttonTray}>
@@ -17,6 +7,15 @@ export const ButtonTray = ({ children }) => {
         </View>
     );
 }
+
+export const Button = ({ icon, label, onPress, styleLabel, styleButton }) => {
+    return (
+        <Pressable onPress={onPress} style={[styles.button, styleButton]}>
+            { icon || null }
+            <Text style={[styles.label, styleLabel]}>{label}</Text>
+        </Pressable>
+    );
+};
 
 const styles = StyleSheet.create({
     buttonTray: {
@@ -41,4 +40,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default {Button, ButtonTray};
+export default { Button, ButtonTray };

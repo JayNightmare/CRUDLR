@@ -12,8 +12,8 @@ const ModuleView = ({ module, placeHolderText, onModify, onRemove }) => {
             <Text style={styles.detail}>Module Leader: {module.ModuleLeaderName}</Text>
 
             <ButtonTray>
-                <Button onClick={() => onModify(module)} icon={<Icons.Edit />} label='Modify' />
-                <Button onClick={() => onRemove(module)} icon={<Icons.Delete />} label='Delete' styleLabel={{color: 'red'}} styleButton={{borderColor: 'red'}} />
+                <Button onPress={() => onModify(module)} icon={<Icons.Edit />} label='Modify' />
+                <Button onPress={() => onRemove(module)} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
             </ButtonTray>
 
             <Text style={styles.descrip} >{placeHolderText}</Text>

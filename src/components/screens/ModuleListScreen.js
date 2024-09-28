@@ -10,24 +10,22 @@ const ModuleListScreen = () => {
     const navigation = useNavigation();
     let [modules, setModules] = React.useState(initialModules);
 
-    const handleSelect = (module) => { navigation.navigate('ModuleViewScreen', { 
-        module, 
-        onRemove: handleDelete,
-        onModify: handleModify 
-    }) };
-
+    const handleSelect = (module) => { 
+        navigation.navigate('ModuleViewScreen', { 
+            module, 
+            onRemove: handleDelete, // Ensure `handleDelete` is correctly defined
+        });
+    };
+    
     const handleDelete = (module) => { 
         setModules(modules.filter((item) => item.ModuleID !== module.ModuleID)); 
         navigation.navigate('ModuleListScreen');
-    }; 
-
-    // Handle Modify
-    const handleModify = (module) => { navigation.navigate('ModuleModifyScreen', { module }) };
-
+    };
+    
     return ( 
         <Screen>
-            <StatusBar barStyle="dark-content" />
-            <ModuleList modules={modules} onSelect={handleSelect} onRemove={handleDelete}/>
+            <StatusBar barStyle="light-content" />
+            <ModuleList modules={modules} onSelect={handleSelect} onRemove={handleDelete} />
         </Screen>
     );
 };  

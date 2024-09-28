@@ -1,12 +1,13 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import Screen from '../layout/Screen';
-
 import ModuleView from '../entity/modules/ModuleView';
 
-
 const ModuleViewScreen = ({ route }) => {
-    const { module, onRemove, onModify } = route.params;
+    const { module, onRemove } = route.params;
+
+    const handleModify = (module) => { navigation.navigate('ModuleModifyScreen', { module }) };
+
     const placeHolderText = `
 Lorem ipsum odor amet, consectetuer adipiscing elit. Mollis euismod rutrum sodales maximus donec sit imperdiet. Dignissim eleifend suscipit odio, phasellus aenean felis. Eu phasellus class consequat sit curae mus mollis. Faucibus turpis vestibulum aenean nec nullam, facilisis pharetra est. Ad senectus quam sem et purus enim, suspendisse a condimentum.
 
@@ -22,7 +23,13 @@ Amet sit ridiculus sociosqu nibh, mollis et porttitor. Cursus quam eu mollis arc
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
-            <ModuleView key={module.ModuleCode} module={module} onRemove={onRemove} onModify={onModify} placeHolderText={placeHolderText}></ModuleView>
+            <ModuleView 
+                key={module.ModuleCode} 
+                module={module} 
+                onRemove={onRemove} 
+                onModify={handleModify} 
+                placeHolderText={placeHolderText}>
+            </ModuleView>
         </Screen> 
     )
 };

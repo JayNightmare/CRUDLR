@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar, LogBox } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Screen from "../layout/Screen";
-import initialModules from "../../data/modules.js";
 import ModuleList from "../entity/modules/ModuleList.js";
-
 import { ButtonTray, Button  } from "../UI/Button.js";
 import Icons from "../UI/Icons.js";
+import API from "../API/API.js";
 
 const ModuleListScreen = () => {
-    LogBox.ignoreLogs(['Non-serializable values were found in the navigation state'])
+    LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
+
+    const modulesEndpoint = 'https://softwarehub.uk/unibase/api/modules'
 
     const navigation = useNavigation();
-    const [modules, setModules] = React.useState(initialModules);
+    const [modules, setModules] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     
+    const loadMoudles = async (endpoint) => {
+        const response = await API.get(endpoint);
+        setIsLoading(false);
+        if (response.isSuccess) setModules(response.result);
+    }
+
+    useEffect(() => {
+        loadMoudles(modulesEndpoint);
+    }, []);
+
     const handleDelete = (module) => { 
         setModules(modules.filter((item) => item.ModuleID !== module.ModuleID)); 
     };
@@ -55,7 +67,7 @@ const ModuleListScreen = () => {
                         label="Add" 
                         onPress={gotoAddScreen} />
             </ButtonTray>
-            <ModuleList modules={modules} onSelect={gotoViewScreen} onDelete={handleDelete} />
+            <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} />
         </Screen>
     );
 };

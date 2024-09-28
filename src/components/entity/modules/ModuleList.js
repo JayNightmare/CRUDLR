@@ -1,10 +1,13 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import ModuleItem from "./ModuleItem.js";
 
 
-const ModuleList = ({modules, onSelect}) => {
+const ModuleList = ({ modules, onSelect, isLoading }) => {
     return (
         <ScrollView style={styles.container}>
+            {
+                isLoading ? <ActivityIndicator size="large" color="#000" /> : null
+            }
             { modules.map((module) => {
                 return <ModuleItem key={module.ModuleCode} module={module} onSelect={onSelect}/>
             })}
@@ -18,7 +21,7 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: "#fff",
         borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5
+        borderBottomRightRadius: 5,
     }
 });
 

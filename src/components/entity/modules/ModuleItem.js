@@ -20,18 +20,21 @@ const styles = StyleSheet.create({
     cardContainer: {
         marginVertical: 5,
         marginHorizontal: 10,
+        marginBottom: 10, // Add a margin below the card
+        paddingHorizontal: 10,
+        paddingVertical: 12,
+        
         backgroundColor: "#e8e8e8", 
-        borderRadius: 8,
+
         elevation: 2, 
         shadowColor: "#000000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
         shadowRadius: 5,
-        paddingHorizontal: 10,
-        paddingVertical: 12,
+
+        borderRadius: 8,
         borderColor: "#cccc", // Add a bottom border
         borderWidth: 1,
-        marginBottom: 10, // Add a margin below the card
     },
 
     row: {

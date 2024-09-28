@@ -17,6 +17,7 @@ Install For React Native App Development:
 Content
 =============================
 - [Content](#content)
+- [Collaborators](#collaborators)
 - [Part 1](#part-1)
     - [Part 1: The CRUDLR Workflow](#part-1-the-crudlr-workflow)
       - [Week 1:](#week-1)
@@ -26,6 +27,15 @@ Content
 - [Part 2](#part-2)
     - [Part 2: Using RESTful APIs](#part-2-using-restful-apis)
       - [Week 5:](#week-5)
+---
+
+# Collaborators
+| Accounts | Redirects |
+|----------|-----------|
+| KU | [@JayBellCompaan](https://github.com/JayBellCompaan) |
+| Main | [@JayNightmare](https://github.com/JayNightmare) |
+
+All Commits are done by main account as thats what my VSCode is attached to.
 
 ---
 # Part 1

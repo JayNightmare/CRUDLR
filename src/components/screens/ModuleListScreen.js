@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { StatusBar, LogBox } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import Screen from "../layout/Screen";
+import Screen from "../layout/Screen"; 
 import ModuleList from "../entity/modules/ModuleList.js";
 import { ButtonTray, Button  } from "../UI/Button.js";
 import Icons from "../UI/Icons.js";

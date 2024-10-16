@@ -1,5 +1,5 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-
+ 
 const ModuleItem = ({ module, onSelect }) => {
     return (
         <View style={styles.cardContainer}>

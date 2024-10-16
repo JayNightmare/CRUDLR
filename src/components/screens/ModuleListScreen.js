@@ -58,14 +58,7 @@ const ModuleListScreen = () => {
         <Screen>
             <StatusBar barStyle="light-content" />
             <ButtonTray>
-                <Button styleButton={{
-                            borderBottomLeftRadius: 0, 
-                            borderBottomRightRadius: 0, 
-                            borderBottomWidth: 1, borderWidth: 0
-                        }} 
-                        icon={<Icons.Add size={20}/>} 
-                        label="Add" 
-                        onPress={gotoAddScreen} />
+                <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
             </ButtonTray>
             <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} />
         </Screen>
